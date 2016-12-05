@@ -1,0 +1,13 @@
+Package: rstore
+Type: Package
+Title: A persistent storage framework for R
+Version: 0.1.0
+Author: hskksk
+Maintainer: hskksk <hskksk@gmail.com>
+Description: A persistent storage framework for R. You can use rds, sqlite3 and
+    PostgreSQL as backend.
+License: MIT LICENSE
+LazyData: TRUE
+Imports:
+    stringr,
+RoxygenNote: 5.0.1
