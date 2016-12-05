@@ -77,3 +77,18 @@ list.obj <- function(name=NULL, rev=NULL, backend=NULL) {
   }
   backend$list.obj(name, rev)
 }
+
+#' create revision name from config object.
+#'
+#' @param  config  config object specifies the revision.
+#' @param  backend backend storage.
+#'
+#' @return the list of length 2 (rev, revision info)
+#'
+#' @export
+get.rev.info <- function(config=NULL, backend=NULL) {
+  if(is.null(backend)){
+    backend <- get.default.backend()
+  }
+  backend$get.rev.info(config)
+}

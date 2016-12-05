@@ -56,6 +56,9 @@ Backend.rds <- setRefClass("Backend.rds",
       revs   = splits[,2]
       sprintf("%s(rev = %s)", names, revs)
     },
+    get.rev.info = function(config){
+      list(rev=substring(digest::digest(config, algo="sha256"), 1, 8), info=config)
+    },
     name_to_path = function(name, rev){
       sprintf("%s/%s-%s.rds", dir, name, rev)
     },

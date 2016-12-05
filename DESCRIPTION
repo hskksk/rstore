@@ -10,4 +10,5 @@ License: MIT LICENSE
 LazyData: TRUE
 Imports:
     stringr,
+    digest,
 RoxygenNote: 5.0.1
