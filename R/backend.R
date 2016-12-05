@@ -9,7 +9,7 @@ Backend.rds <- setRefClass("Backend.rds",
       dir <<- dir
     },
     save.obj = function(obj, name, rev) {
-      if(stringr::str_match(name, "-")){
+      if(stringr::str_detect(name, "-")){
         stop("digits, ascii and '_' can only be used for the object name.")
       }
       if(is.null(rev)){
@@ -30,7 +30,7 @@ Backend.rds <- setRefClass("Backend.rds",
         rev = find.latest.rev(name)
       }
       path = name_to_path(name, rev)
-      loadRDS(obj, path)
+      readRDS(path)
     },
     forget.obj = function(name){
       pat = sprintf("%s-.+\\.rds", name)
@@ -56,8 +56,14 @@ Backend.rds <- setRefClass("Backend.rds",
       revs   = splits[,2]
       sprintf("%s(rev = %s)", names, revs)
     },
-    get.rev.info = function(config){
-      list(rev=substring(digest::digest(config, algo="sha256"), 1, 8), info=config)
+    get.rev.info = function(object){
+      list(rev=substring(digest::digest(object, algo="sha256"), 1, 8), info=object)
+    },
+    save.rev.info = function(object, rev){
+      save.obj(object, "__REVINFO__", rev)
+    },
+    load.rev.info = function(rev){
+      load.obj("__REVINFO__", rev)
     },
     name_to_path = function(name, rev){
       sprintf("%s/%s-%s.rds", dir, name, rev)
