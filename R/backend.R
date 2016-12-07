@@ -82,7 +82,7 @@ Backend.rds <- setRefClass("Backend.rds",
       revs = stringr::str_replace_all(fs, sprintf("%s-|\\.rds", name), "")
       revs[order(mtimes)]
     },
-    find.latest.rev = function(name){
+    get.latest.rev = function(name){
       revs = find.revs(name)
       revs[length(revs)]
     }

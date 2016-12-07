@@ -95,17 +95,17 @@ get.rev.info <- function(object=NULL, backend=NULL) {
 
 #' create revision name from config object.
 #'
-#' @param  object  a object specifies the revision.
+#' @param  name    object name on the storage.
 #' @param  backend backend storage.
 #'
-#' @return the list of length 2 (rev, revision info)
+#' @return latest revision name.
 #'
 #' @export
-get.rev.info <- function(object=NULL, backend=NULL) {
+get.latest.rev <- function(name, backend=NULL) {
   if(is.null(backend)){
     backend <- get.default.backend()
   }
-  backend$get.rev.info(object)
+  backend$get.latest.rev(name)
 }
 
 #' save revision info.

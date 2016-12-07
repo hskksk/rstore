@@ -5,26 +5,16 @@
 \title{create revision name from an object.}
 \usage{
 get.rev.info(object = NULL, backend = NULL)
-
-get.rev.info(object = NULL, backend = NULL)
 }
 \arguments{
-\item{object}{a object specifies the revision.}
-
-\item{backend}{backend storage.}
-
 \item{object}{a object specifies the revision.}
 
 \item{backend}{backend storage.}
 }
 \value{
 the list of length 2 (rev, revision info)
-
-the list of length 2 (rev, revision info)
 }
 \description{
 create revision name from an object.
-
-create revision name from config object.
 }
 
