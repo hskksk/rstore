@@ -62,6 +62,21 @@ remove.obj <- function(name, rev, backend=NULL) {
   backend$remove.obj(name, rev)
 }
 
+#' remove all object of specific revision from persistent storage.
+#'
+#' @param  rev     revision name of the object.
+#' @param  backend backend storage.
+#'
+#' @return the name of removed object.
+#'
+#' @export
+forget.rev <- function(rev, backend=NULL) {
+  if(is.null(backend)){
+    backend <- get.default.backend()
+  }
+  backend$forget.rev(rev)
+}
+
 #' list object names and revisions.
 #'
 #' @param  name    object name on the storage. this argment can be NULL and then the function returns all objects.

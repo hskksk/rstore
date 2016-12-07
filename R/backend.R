@@ -41,13 +41,26 @@ Backend.rds <- setRefClass("Backend.rds",
     },
     forget.obj = function(name){
       pat = sprintf("%s-.+\\.rds", name)
-      fs  = list.files(dir, pat, full.names=TRUE)
-      file.remove(fs)
+      fs  = list.files(dir, pat)
+      splits = stringr::str_split(fs, "-|\\.", n=3, simplify=TRUE)
+      names  = splits[,1]
+      revs   = splits[,2]
+      fs.full = sprintf("%s/%s", dir, fs)
+      revs[file.remove(fs.full)]
     },
     remove.obj = function(name, rev) {
       path = name_to_path(name, rev)
       file.remove(path)
       c(name, rev)
+    },
+    forget.rev = function(rev){
+      pat = sprintf(".+-%s\\.rds", rev)
+      fs  = list.files(dir, pat)
+      splits = stringr::str_split(fs, "-|\\.", n=3, simplify=TRUE)
+      names  = splits[,1]
+      revs   = splits[,2]
+      fs.full = sprintf("%s/%s", dir, fs)
+      names[file.remove(fs.full)]
     },
     list.obj = function(name=NULL, rev=NULL) {
       if(is.null(name)){
