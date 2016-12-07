@@ -27,14 +27,14 @@ Backend.rds <- setRefClass("Backend.rds",
     },
     load.obj = function(name, rev) {
       if(is.null(rev)){
-        rev = find.latest.rev(name)
+        rev = get.latest.rev(name)
       }
       path = name_to_path(name, rev)
       readRDS(path)
     },
     obj.exists = function(name, rev) {
       if(is.null(rev)){
-        rev = find.latest.rev(name)
+        rev = get.latest.rev(name)
       }
       path = name_to_path(name, rev)
       file.exists(path)
