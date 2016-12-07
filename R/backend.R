@@ -9,7 +9,7 @@ Backend.rds <- setRefClass("Backend.rds",
       dir <<- dir
     },
     save.obj = function(obj, name, rev) {
-      if(stringr::str_detect(name, "-")){
+      if(stringr::str_detect(name, "[^a-zA-Z0-9_]")){
         stop("digits, ascii and '_' can only be used for the object name.")
       }
       if(is.null(rev)){
