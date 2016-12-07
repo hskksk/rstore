@@ -137,3 +137,19 @@ load.rev.info <- function(rev, backend=NULL) {
   }
   backend$load.rev.info(rev)
 }
+
+#' check if object exists.
+#'
+#' @param  name    object name.
+#' @param  rev     revision name.
+#' @param  backend backend storage.
+#'
+#' @return TRUE if object exists else FALSE.
+#'
+#' @export
+obj.exists <- function(name, rev, backend=NULL) {
+  if(is.null(backend)){
+    backend <- get.default.backend()
+  }
+  backend$obj.exists(name, rev)
+}

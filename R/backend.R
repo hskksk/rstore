@@ -32,6 +32,13 @@ Backend.rds <- setRefClass("Backend.rds",
       path = name_to_path(name, rev)
       readRDS(path)
     },
+    obj.exists = function(name, rev) {
+      if(is.null(rev)){
+        rev = find.latest.rev(name)
+      }
+      path = name_to_path(name, rev)
+      file.exists(path)
+    },
     forget.obj = function(name){
       pat = sprintf("%s-.+\\.rds", name)
       fs  = list.files(dir, pat, full.names=TRUE)
@@ -81,3 +88,4 @@ Backend.rds <- setRefClass("Backend.rds",
     }
   )
 )
+
