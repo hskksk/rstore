@@ -4,7 +4,7 @@
 \alias{backend.rds}
 \title{create rds backend}
 \usage{
-backend.rds(dir)
+backend.rds(dir = "./data")
 }
 \arguments{
 \item{...}{arguments passed to Backend.rds$new()}

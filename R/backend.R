@@ -104,7 +104,9 @@ Backend.rds <- setRefClass("Backend.rds",
   )
 )
 
-.default.backend = Backend.rds()
+if(is.null(options("rstore.backend"))){
+  options("rstore.backend" = backend.rds())
+}
 
 #' create rds backend
 #'
@@ -113,27 +115,13 @@ Backend.rds <- setRefClass("Backend.rds",
 #' @return a rds backend
 #'
 #' @export
-backend.rds = function(dir){
+backend.rds = function(dir="./data"){
   Backend.rds(dir=dir)
 }
 
-#' set default backend
-#'
-#' @param  backend backend storage.
-#'
-#' @return NULL
-#'
-#' @export
-set.default.backend <- function(backend){
-  .default.backend <<- backend
-  NULL
-}
-
-#' get default backend
-#'
-#' @return default backend
-#'
-#' @export
-get.default.backend <- function(){
-  .default.backend
+get.default.backend = function(){
+  if(is.null(options("rstore.backend"))){
+    options("rstore.backend" = backend.rds())
+  }
+  options("rstore.backend")
 }
