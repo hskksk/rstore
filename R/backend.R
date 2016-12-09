@@ -1,4 +1,9 @@
 
+#' rds backend class
+#'
+#' @field dir storage directory
+#'
+#' @export
 Backend.rds <- setRefClass("Backend.rds",
   fields = list(dir = "character"),
   methods = list(
@@ -101,9 +106,34 @@ Backend.rds <- setRefClass("Backend.rds",
 
 .default.backend = Backend.rds()
 
+#' create rds backend
+#'
+#' @param  ... arguments passed to Backend.rds$new()
+#'
+#' @return a rds backend
+#'
+#' @export
+backend.rds = function(dir){
+  Backend.rds(dir=dir)
+}
+
+#' set default backend
+#'
+#' @param  backend backend storage.
+#'
+#' @return NULL
+#'
+#' @export
 set.default.backend <- function(backend){
   .default.backend <<- backend
+  NULL
 }
+
+#' get default backend
+#'
+#' @return default backend
+#'
+#' @export
 get.default.backend <- function(){
   .default.backend
 }
