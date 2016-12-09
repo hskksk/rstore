@@ -1,6 +1,3 @@
-get.default.backend <- function(){
-  Backend.rds()
-}
 
 Backend.rds <- setRefClass("Backend.rds",
   fields = list(dir = "character"),
@@ -102,3 +99,11 @@ Backend.rds <- setRefClass("Backend.rds",
   )
 )
 
+.default.backend = Backend.rds()
+
+set.default.backend <- function(backend){
+  .default.backend <<- backend
+}
+get.default.backend <- function(){
+  .default.backend
+}
