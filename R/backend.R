@@ -76,7 +76,8 @@ Backend.rds <- setRefClass("Backend.rds",
       splits = stringr::str_split(fs, "-|\\.", n=3, simplify=TRUE)
       names  = splits[,1]
       revs   = splits[,2]
-      sprintf("%s(rev = %s)", names, revs)
+      mtimes = file.info(sprintf("%s/%s", dir, fs))$mtime
+      sprintf("%s(rev = %s)", names, revs)[order(mtimes)]
     },
     get.rev.info = function(object){
       list(rev=substring(digest::digest(object, algo="sha256"), 1, 8), info=object)
