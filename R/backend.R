@@ -120,7 +120,7 @@ backend.rds = function(dir="./data"){
 }
 
 get.default.backend = function(){
-  if(is.null(options("rstore.backend"))){
+  if(is.null(options("rstore.backend")[[1]])){
     options("rstore.backend" = backend.rds())
   }
   options("rstore.backend")
