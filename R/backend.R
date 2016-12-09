@@ -123,5 +123,5 @@ get.default.backend = function(){
   if(is.null(options("rstore.backend")[[1]])){
     options("rstore.backend" = backend.rds())
   }
-  options("rstore.backend")
+  options("rstore.backend")[[1]]
 }
