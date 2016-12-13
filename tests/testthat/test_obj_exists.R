@@ -17,6 +17,10 @@ test_that("obj.exists return TRUE if object exists in the storage", {
   ret = save.obj("abc", "obj0")
   expect_equal(obj.exists(ret[1], ret[2]), TRUE)
   expect_equal(obj.exists("obj0", "not_exist_rev"), FALSE)
+
+  ret = save.obj("def", "obj1", "rev1")
+  expect_equal(obj.exists("obj1", "rev1"), TRUE)
+  expect_equal(obj.exists("obj1", "not_exist_rev"), FALSE)
 })
 
 teardown()

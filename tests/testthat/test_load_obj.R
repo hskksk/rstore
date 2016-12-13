@@ -22,7 +22,6 @@ test_that("load.obj loads saved objects", {
 teardown()
 
 test_that("load.obj loads newest object if rev is NULL", {
-  skip("skip until the bug in load.obj is fixed")
   expect_equal(length(list.obj()), 0)
 
   save.obj(1, "obj0", "rev0")

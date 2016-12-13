@@ -49,3 +49,17 @@ test_that("revision of saved object automatically assign if rev is NULL", {
 })
 
 teardown()
+
+test_that("can't overwrite same name with same revision", {
+  expect_equal(length(list.obj()), 0)
+
+  expect_equal(obj.exists("obj0", "rev0"), FALSE)
+  save.obj(123, "obj0", "rev0")
+  expect_equal(obj.exists("obj0", "rev0"), TRUE)
+
+  expect_error(save.obj(list(456), "obj0", "rev0"), "already exist")
+  expect_equal(obj.exists("obj0", "rev0"), TRUE)
+  expect_equal(load.obj("obj0", "rev0"), 123)
+
+  forget.obj("obj0")
+})
