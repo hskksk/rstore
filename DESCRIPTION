@@ -11,4 +11,6 @@ LazyData: TRUE
 Imports:
     stringr,
     digest,
+Suggests:
+    testthat,
 RoxygenNote: 5.0.1

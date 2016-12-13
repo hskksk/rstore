@@ -4,7 +4,7 @@
 \alias{obj.exists}
 \title{check if object exists.}
 \usage{
-obj.exists(name, rev, backend = NULL)
+obj.exists(name, rev = NULL, backend = NULL)
 }
 \arguments{
 \item{name}{object name.}

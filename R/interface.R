@@ -162,9 +162,23 @@ load.rev.info <- function(rev, backend=NULL) {
 #' @return TRUE if object exists else FALSE.
 #'
 #' @export
-obj.exists <- function(name, rev, backend=NULL) {
+obj.exists <- function(name, rev=NULL, backend=NULL) {
   if(is.null(backend)){
     backend <- get.default.backend()
   }
   backend$obj.exists(name, rev)
+}
+
+#' create backend
+#'
+#' @param  ... arguments passed to backend constructor
+#'
+#' @return a rds backend
+#'
+#' @export
+create.backend = function(name="rds", dir="./data"){
+  name = match.arg(name)
+  if(name=="rds"){
+    Backend.rds(dir=dir)
+  }
 }
