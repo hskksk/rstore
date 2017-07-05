@@ -1,0 +1,6 @@
+pipeline:
+  build:
+    image: rocker/tidyverse
+    commands:
+      - R CMD build .
+      - R CMD check rstore_0.1.0.tar.gz
