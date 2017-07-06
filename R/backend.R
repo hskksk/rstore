@@ -77,7 +77,8 @@ Backend.rds <- setRefClass("Backend.rds",
       pat = name_to_fname(name, rev, ".+")
       fs  = list.files(dir, pat)
       splits = path_to_name(fs)
-      sprintf("%s(rev = %s)", splits$name, splits$rev)[order(splits$ts)]
+      objs = sprintf("%s(rev = %s)", splits$name, splits$rev)
+      objs[order(splits$ts)]
     },
     get.rev.info = function(object){
       rev = substring(digest::digest(object, algo="sha256"), 1, 8)
@@ -96,7 +97,7 @@ Backend.rds <- setRefClass("Backend.rds",
       sprintf("%s/%s", dir, name_to_fname(name, rev, ts))
     },
     path_to_name = function(path){
-      splits = stringr::str_split(path, "-|¥¥.r", n=4, simplify=TRUE)
+      splits = stringr::str_split(path, "-|ﾂ･ﾂ･.r", n=4, simplify=TRUE)
       list(
         name = splits[,1]
         ,rev = splits[,2]
