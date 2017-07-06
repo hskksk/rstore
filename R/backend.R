@@ -80,7 +80,8 @@ Backend.rds <- setRefClass("Backend.rds",
       sprintf("%s(rev = %s)", splits$name, splits$rev)[order(splits$ts)]
     },
     get.rev.info = function(object){
-      list(rev=substring(digest::digest(object, algo="sha256"), 1, 8), info=object)
+      rev = substring(digest::digest(object, algo="sha256"), 1, 8)
+      list(rev=rev, info=object)
     },
     save.rev.info = function(object, rev){
       save.obj(object, "__REVINFO__", rev)
@@ -95,7 +96,7 @@ Backend.rds <- setRefClass("Backend.rds",
       sprintf("%s/%s", dir, name_to_fname(name, rev, ts))
     },
     path_to_name = function(path){
-      splits = stringr::str_split(path, "-|\\.r", n=4, simplify=TRUE)
+      splits = stringr::str_split(path, "-|¥¥.r", n=4, simplify=TRUE)
       list(
         name = splits[,1]
         ,rev = splits[,2]
